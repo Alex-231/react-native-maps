@@ -41,6 +41,7 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   private static final int SET_INDOOR_ACTIVE_LEVEL_INDEX = 10;
   private static final int SET_CAMERA = 11;
   private static final int ANIMATE_CAMERA = 12;
+  private static final int BOUNDING_BOX_FOR_COORDINATES = 13;
 
 
   private final Map<String, Integer> MAP_TYPES = MapBuilder.of(
@@ -342,6 +343,10 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
       case SET_INDOOR_ACTIVE_LEVEL_INDEX:
         view.setIndoorActiveLevelIndex(args.getInt(0));
         break;
+
+      case BOUNDING_BOX_FOR_COORDINATES:
+        view.boundingBoxForCoordinates(args.getArray(0));
+        break;
     }
   }
 
@@ -389,6 +394,7 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
         "fitToElements", FIT_TO_ELEMENTS,
         "fitToSuppliedMarkers", FIT_TO_SUPPLIED_MARKERS,
         "fitToCoordinates", FIT_TO_COORDINATES,
+        "boundingBoxForCoordinates", BOUNDING_BOX_FOR_COORDINATES,
         "animateToNavigation", ANIMATE_TO_NAVIGATION
     );
 

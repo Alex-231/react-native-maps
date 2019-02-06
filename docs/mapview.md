@@ -89,7 +89,8 @@ To access event data, you will need to use `e.nativeEvent`. For example, `onPres
 | `fitToCoordinates` | `coordinates: Array<LatLng>, options: { edgePadding: EdgePadding, animated: Boolean }` | If called in `ComponentDidMount` in android, it will cause an exception. It is recommended to call it from the MapView `onLayout` event.
 | `pointForCoordinate` | `coordinate: LatLng` | Converts a map coordinate to a view coordinate (`Point`). Returns a `Promise<Point>`.
 | `coordinateForPoint` | `point: Point` | Converts a view coordinate (`Point`) to a map coordinate. Returns a `Promise<Coordinate>`.
-
+| `boundingBoxForRegion` | `region: Region` | Converts a region into a Bounding Box. Returns `{northEast: LatLng, southWest: LatLng}`
+| `boundingBoxForCoordinates` | `coordinates: LatLng[]` | Converts an array of coordinates into a Bounding Box. Returns `Promise<{northEast: LatLng, southWest: LatLng}>`
 
 
 ## Types

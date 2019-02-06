@@ -239,6 +239,8 @@ declare module "react-native-maps" {
         setMapBoundaries(northEast: LatLng, southWest: LatLng): void;
         getMapBoundaries(): {northEast: LatLng; southWest: LatLng};
         takeSnapshot(options?: SnapshotOptions): Promise<string>;
+        boundingBoxForRegion(region?: Region): {northEast: LatLng; southWest: LatLng};
+        boundingBoxForCoordinates(coordinates?: LatLng[]): {northEast: LatLng; southWest: LatLng};
     }
 
     export class MapViewAnimated extends MapView {

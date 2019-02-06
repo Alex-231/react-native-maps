@@ -330,6 +330,28 @@ RCT_EXPORT_METHOD(fitToCoordinates:(nonnull NSNumber *)reactTag
   }];
 }
 
+RCT_EXPORT_METHOD(boundingBoxForCoordinates:(nonnull NSNumber *)reactTag
+                  coordinates:(nonnull NSArray<AIRMapCoordinate *> *)coordinates
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc]];
+
+  for (AIRMapCoordinate *coordinate in coordinates)
+    bounds = [bounds includingCoordinate:coordinate.coordinate];
+
+  resolve(@{
+    @"northEast" : @{
+      @"longitude" : bounds[0][0],
+      @"latitude" : bounds[0][1]
+    },
+    @"southWest" : @{
+      @"longitude" : bounds[1][0],
+      @"latitude" : bounds[1][1]
+    }
+  });
+}
+
 RCT_EXPORT_METHOD(takeSnapshot:(nonnull NSNumber *)reactTag
                   withWidth:(nonnull NSNumber *)width
                   withHeight:(nonnull NSNumber *)height

@@ -857,6 +857,27 @@ public class AirMapView extends MapView implements GoogleMap.InfoWindowAdapter,
         0); // Without this, the Google logo is moved up by the value of edgePadding.bottom
   }
 
+  public double[][] boundingBoxForCoordinates(ReadableArray coordinatesArray) {
+    
+    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+    for (int i = 0; i < coordinatesArray.size(); i++) {
+      ReadableMap latLng = coordinatesArray.getMap(i);
+      Double lat = latLng.getDouble("latitude");
+      Double lng = latLng.getDouble("longitude");
+      builder.include(new LatLng(lat, lng));
+    }
+
+    LatLngBounds bounds = builder.build();
+    LatLng northEast = bounds.northeast;
+    LatLng southWest = bounds.southwest;
+
+    return new double[][] {
+      {northEast.longitude, northEast.latitude},
+      {southWest.longitude, southWest.latitude}
+    };
+  }
+
   public double[][] getMapBoundaries() {
     LatLngBounds bounds = map.getProjection().getVisibleRegion().latLngBounds;
     LatLng northEast = bounds.northeast;
