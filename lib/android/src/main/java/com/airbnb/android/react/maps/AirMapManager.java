@@ -407,7 +407,7 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   }
 
   public static <K, V> Map<K, V> CreateMap(
-  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10) {
+  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10, K k11, V v11) {
     Map map = new HashMap<K, V>();
     map.put(k1, v1);
     map.put(k2, v2);
