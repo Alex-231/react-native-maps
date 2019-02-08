@@ -343,10 +343,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
       case SET_INDOOR_ACTIVE_LEVEL_INDEX:
         view.setIndoorActiveLevelIndex(args.getInt(0));
         break;
-
-      case BOUNDING_BOX_FOR_COORDINATES:
-        view.boundingBoxForCoordinates(args.getArray(0));
-        break;
     }
   }
 
@@ -394,7 +390,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
         "fitToElements", FIT_TO_ELEMENTS,
         "fitToSuppliedMarkers", FIT_TO_SUPPLIED_MARKERS,
         "fitToCoordinates", FIT_TO_COORDINATES,
-        "boundingBoxForCoordinates", BOUNDING_BOX_FOR_COORDINATES,
         "animateToNavigation", ANIMATE_TO_NAVIGATION
     );
 
@@ -407,7 +402,7 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   }
 
   public static <K, V> Map<K, V> CreateMap(
-  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10, K k11, V v11) {
+  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10) {
     Map map = new HashMap<K, V>();
     map.put(k1, v1);
     map.put(k2, v2);

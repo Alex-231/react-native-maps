@@ -21,6 +21,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -291,5 +292,36 @@ public class AirMapModule extends ReactContextBaseJavaModule {
         promise.resolve(coordinates);
       }
     });
+  }
+
+  @ReactMethod
+  public void boundingBoxForCoordinates(ReadableArray coordinates, final Promise promise) {
+    
+    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+    for (int i = 0; i < coordinates.size(); i++) {
+      ReadableMap latLng = coordinates.getMap(i);
+      Double lat = latLng.getDouble("latitude");
+      Double lng = latLng.getDouble("longitude");
+      builder.include(new LatLng(lat, lng));
+    }
+
+    LatLngBounds bounds = builder.build();
+    LatLng northEast = bounds.northeast;
+    LatLng southWest = bounds.southwest;
+
+    WritableMap boundingBox = new WritableNativeMap();
+    WritableMap northEastHash = new WritableNativeMap();
+    WritableMap southWestHash = new WritableNativeMap();
+
+    northEastHash.putDouble("longitude", northEast.longitude);
+    northEastHash.putDouble("latitude", northEast.latitude);
+    southWestHash.putDouble("longitude", southWest.longitude);
+    southWestHash.putDouble("latitude", southWest.latitude);
+
+    boundingBox.putMap("northEast", northEastHash);
+    boundingBox.putMap("southWest", southWestHash);
+
+    promise.resolve(boundingBox);
   }
 }
